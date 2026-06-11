@@ -1,7 +1,109 @@
-<h1>SCH Studio</h1>
-<p>Official support and privacy pages for SCH Studio applications.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCH Studio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-<ul>
-  <li><a href="privacy.html">Privacy Policy</a></li>
-  <li><a href="support.html">Support</a></li>
-</ul>
+    .container {
+      max-width: 800px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #cbd5e1;
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+      min-width: 220px;
+      text-decoration: none;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 38px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SCH Studio</h1>
+
+    <p>
+      Building simple, practical and user-focused applications.
+    </p>
+
+    <div class="cards">
+      <a class="card" href="privacy.html">
+        <h2>Privacy Policy</h2>
+        <p>Read how user data is collected, stored and protected.</p>
+      </a>
+
+      <a class="card" href="support.html">
+        <h2>Support</h2>
+        <p>Contact us for assistance, bug reports and feedback.</p>
+      </a>
+    </div>
+
+    <div class="footer">
+      © 2026 SCH Studio. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
