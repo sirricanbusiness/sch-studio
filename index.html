@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,124 +6,305 @@
   <title>SCH Studio</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.25), transparent 35%),
+        linear-gradient(135deg, #020617, #0f172a 55%, #111827);
       color: white;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 72px 24px 40px;
       text-align: center;
-      padding: 40px;
     }
 
     h1 {
-      font-size: 52px;
-      margin-bottom: 16px;
+      font-size: 64px;
+      line-height: 1;
+      margin: 0 0 18px;
+      letter-spacing: -2px;
     }
 
-    p {
-      font-size: 20px;
+    .tagline {
+      font-size: 21px;
       color: #cbd5e1;
-      margin-bottom: 40px;
+      margin: 0 0 48px;
     }
 
-    .cards {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      background: rgba(15, 23, 42, 0.72);
+      border-radius: 28px;
+      padding: 56px 24px 48px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      margin-bottom: 32px;
     }
 
-    .card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(59, 130, 246, 0.22);
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.28), transparent 65%);
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .elde-var-logo {
+      position: relative;
+      z-index: 1;
+      width: 190px;
+      height: 190px;
+      border-radius: 42px;
+      object-fit: cover;
+      box-shadow:
+        0 24px 50px rgba(37, 99, 235, 0.45),
+        0 8px 24px rgba(0, 0, 0, 0.42);
+      animation: float 3.8s ease-in-out infinite;
+      margin-bottom: 34px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    .app-title {
+      position: relative;
+      z-index: 1;
+      font-size: 56px;
+      line-height: 1;
+      margin: 0 0 16px;
+      letter-spacing: -1px;
+    }
+
+    .app-text {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      color: #cbd5e1;
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .app-store-button {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: #000;
+      color: #fff;
+      border: 1px solid rgba(59, 130, 246, 0.9);
       border-radius: 16px;
-      padding: 24px;
-      min-width: 220px;
+      padding: 12px 22px;
       text-decoration: none;
-      color: white;
+      box-shadow: 0 0 28px rgba(37, 99, 235, 0.45);
       transition: 0.2s;
     }
 
+    .app-store-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 36px rgba(37, 99, 235, 0.65);
+    }
+
+    .apple {
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .store-text {
+      text-align: left;
+      line-height: 1.05;
+    }
+
+    .store-small {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+    }
+
+    .store-big {
+      display: block;
+      font-size: 31px;
+      font-weight: 700;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .card {
+      text-align: left;
+      background: rgba(15, 23, 42, 0.66);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      border-radius: 24px;
+      padding: 32px;
+      color: white;
+      text-decoration: none;
+      transition: 0.2s;
+      min-height: 180px;
+    }
+
     .card:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,0.12);
+      transform: translateY(-5px);
+      border-color: rgba(59, 130, 246, 0.45);
+      background: rgba(30, 41, 59, 0.78);
     }
 
-    .app-card {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    }
-
-    .app-card:hover {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    .card-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(37, 99, 235, 0.16);
+      font-size: 28px;
+      margin-bottom: 18px;
     }
 
     .card h2 {
-      margin-top: 0;
+      margin: 0 0 10px;
+      font-size: 26px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .footer {
-      margin-top: 40px;
+      margin-top: 42px;
       color: #94a3b8;
-      font-size: 14px;
+      font-size: 15px;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 720px) {
+      .container {
+        padding-top: 48px;
+      }
+
       h1 {
-        font-size: 38px;
+        font-size: 44px;
       }
 
-      p {
-        font-size: 16px;
+      .tagline {
+        font-size: 17px;
       }
 
-      .card {
-        width: 100%;
+      .hero-card {
+        padding: 42px 20px 38px;
+      }
+
+      .elde-var-logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 34px;
+      }
+
+      .app-title {
+        font-size: 42px;
+      }
+
+      .app-text {
+        font-size: 17px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .store-big {
+        font-size: 25px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
+  <main class="container">
     <h1>SCH Studio</h1>
 
-    <p>
+    <p class="tagline">
       Building simple, practical and user-focused applications.
     </p>
 
-    <div class="cards">
+    <section class="hero-card">
+      <img class="elde-var-logo" src="elde-var-logo.png" alt="Elde Var App Icon" />
+
+      <h2 class="app-title">Elde Var</h2>
+
+      <p class="app-text">
+        Track your income, expenses, savings and financial goals with ease.
+      </p>
+
       <a
-        class="card app-card"
+        class="app-store-button"
         href="https://apps.apple.com/tr/app/elde-var/id6778145520"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h2>📱 Elde Var</h2>
-        <p>Download Elde Var on the App Store.</p>
+        <span class="apple"></span>
+        <span class="store-text">
+          <span class="store-small">Download on the</span>
+          <span class="store-big">App Store</span>
+        </span>
       </a>
+    </section>
 
+    <section class="cards">
       <a class="card" href="privacy.html">
+        <div class="card-icon">🛡️</div>
         <h2>Privacy Policy</h2>
         <p>Read how user data is collected, stored and protected.</p>
       </a>
 
       <a class="card" href="support.html">
+        <div class="card-icon">🎧</div>
         <h2>Support</h2>
         <p>Contact us for assistance, bug reports and feedback.</p>
       </a>
-    </div>
+    </section>
 
     <div class="footer">
       © 2026 SCH Studio. All rights reserved.
     </div>
-  </div>
+  </main>
 </body>
 </html>
-```
