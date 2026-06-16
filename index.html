@@ -1,9 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SCH Studio</title>
+
   <style>
     body {
       margin: 0;
@@ -17,7 +19,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       text-align: center;
       padding: 40px;
     }
@@ -56,6 +58,14 @@
       background: rgba(255,255,255,0.12);
     }
 
+    .app-card {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+
+    .app-card:hover {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
     .card h2 {
       margin-top: 0;
     }
@@ -90,6 +100,16 @@
     </p>
 
     <div class="cards">
+      <a
+        class="card app-card"
+        href="https://apps.apple.com/tr/app/elde-var/id6778145520"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <h2>📱 Elde Var</h2>
+        <p>Download Elde Var on the App Store.</p>
+      </a>
+
       <a class="card" href="privacy.html">
         <h2>Privacy Policy</h2>
         <p>Read how user data is collected, stored and protected.</p>
@@ -107,3 +127,4 @@
   </div>
 </body>
 </html>
+```
