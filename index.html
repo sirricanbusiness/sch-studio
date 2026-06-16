@@ -84,36 +84,30 @@
     .hero-card {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(59, 130, 246, 0.28);
-      background: rgba(15, 23, 42, 0.72);
-      border-radius: 30px;
-      padding: 58px 24px 50px;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(96, 165, 250, 0.42);
+      background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(14, 165, 233, 0.06)),
+        rgba(15, 23, 42, 0.72);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow:
+        0 0 42px rgba(37, 99, 235, 0.28),
+        0 28px 80px rgba(0, 0, 0, 0.38);
       margin-bottom: 32px;
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 760px;
-      height: 420px;
-      border-radius: 50%;
-      border: 1px solid rgba(59, 130, 246, 0.24);
-      top: 92px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      width: 560px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 68%);
-      top: 118px;
-      left: 50%;
-      transform: translateX(-50%);
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      border-radius: 26px;
+      padding: 54px 24px 46px;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.18), transparent 42%),
+        rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      box-shadow:
+        inset 0 0 34px rgba(59, 130, 246, 0.08),
+        0 18px 50px rgba(0, 0, 0, 0.22);
     }
 
     .logo-wrap {
@@ -149,7 +143,7 @@
     }
 
     .app-icon:hover {
-      transform: scale(1.04);
+      scale: 1.04;
     }
 
     @keyframes float {
@@ -276,19 +270,11 @@
       }
 
       .hero-card {
-        padding: 42px 20px 38px;
+        padding: 12px;
       }
 
-      .hero-card::before {
-        width: 420px;
-        height: 250px;
-        top: 72px;
-      }
-      
-      .hero-card::after {
-        width: 320px;
-        height: 220px;
-        top: 86px;
+      .hero-inner {
+        padding: 40px 18px 34px;
       }
 
       .app-icon {
@@ -344,34 +330,36 @@
     </p>
 
     <section class="hero-card">
-      <div class="logo-wrap">
-        <img class="app-icon" src="elde-var-logo.png" alt="Elde Var App Icon" />
+      <div class="hero-inner">
+        <div class="logo-wrap">
+          <img class="app-icon" src="elde-var-logo.png" alt="Elde Var App Icon" />
+        </div>
+
+        <h2 class="app-title">Elde Var</h2>
+
+        <p
+          class="app-text"
+          data-tr="Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin."
+          data-en="Track your income, expenses, savings and financial goals with ease."
+        >
+          Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin.
+        </p>
+
+        <a
+          class="app-store-link"
+          href="https://apps.apple.com/tr/app/elde-var/id6778145520"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="App Store'dan İndir"
+        >
+          <img
+            id="appStoreBadge"
+            class="app-store-badge"
+            src="app-store-badge-tr.svg"
+            alt="App Store'dan İndir"
+          />
+        </a>
       </div>
-
-      <h2 class="app-title">Elde Var</h2>
-
-      <p
-        class="app-text"
-        data-tr="Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin."
-        data-en="Track your income, expenses, savings and financial goals with ease."
-      >
-        Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin.
-      </p>
-
-      <a
-        class="app-store-link"
-        href="https://apps.apple.com/tr/app/elde-var/id6778145520"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="App Store'dan İndir"
-      >
-        <img
-          id="appStoreBadge"
-          class="app-store-badge"
-          src="app-store-badge-tr.svg"
-          alt="App Store'dan İndir"
-        />
-      </a>
     </section>
 
     <section class="cards">
