@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,16 +32,48 @@
       backdrop-filter: blur(12px);
     }
 
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
     .back-link {
-      display: inline-block;
-      margin-bottom: 28px;
       color: #60a5fa;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .back-link:hover {
       color: white;
+      text-decoration: underline;
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 8px;
+    }
+
+    .language-switch button {
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.7);
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .language-switch button.active,
+    .language-switch button:hover {
+      color: white;
+      border-color: rgba(59, 130, 246, 0.7);
+      background: rgba(37, 99, 235, 0.28);
     }
 
     .header {
@@ -153,6 +185,11 @@
         padding: 28px 22px;
       }
 
+      .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       h1 {
         font-size: 30px;
       }
@@ -177,125 +214,179 @@
 
 <body>
   <main class="container">
-    <a class="back-link" href="index.html">← Back to Home</a>
+    <div class="top-bar">
+      <a class="back-link" href="index.html" data-tr="← Ana Sayfaya Dön" data-en="← Back to Home">← Ana Sayfaya Dön</a>
+
+      <div class="language-switch">
+        <button type="button" id="trButton" class="active" onclick="setLanguage('tr')">TR</button>
+        <button type="button" id="enButton" onclick="setLanguage('en')">EN</button>
+      </div>
+    </div>
 
     <section class="header">
       <div class="logo-wrap">
         <img class="logo" src="elde-var-logo.png" alt="Elde Var" />
       </div>
 
-      <h1>Privacy Policy for Elde Var</h1>
-      <p class="subtitle">Last Updated: June 16, 2026</p>
+      <h1 data-tr="Elde Var Gizlilik Politikası" data-en="Privacy Policy for Elde Var">Elde Var Gizlilik Politikası</h1>
+      <p class="subtitle" data-tr="Son Güncelleme: 16 Haziran 2026" data-en="Last Updated: June 16, 2026">Son Güncelleme: 16 Haziran 2026</p>
     </section>
 
-    <p>Welcome to Elde Var. Elde Var is developed and operated by SCH Studio. We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you use our application.</p>
+    <p
+      data-tr="Elde Var'a hoş geldiniz. Elde Var, SCH Studio tarafından geliştirilir ve işletilir. Gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, sakladığımızı ve koruduğumuzu açıklar."
+      data-en="Welcome to Elde Var. Elde Var is developed and operated by SCH Studio. We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you use our application."
+    >
+      Elde Var'a hoş geldiniz. Elde Var, SCH Studio tarafından geliştirilir ve işletilir. Gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı, sakladığımızı ve koruduğumuzu açıklar.
+    </p>
 
-    <h2>1. Information We Collect</h2>
+    <h2 data-tr="1. Topladığımız Bilgiler" data-en="1. Information We Collect">1. Topladığımız Bilgiler</h2>
 
-    <h3>Account Information</h3>
+    <h3 data-tr="Hesap Bilgileri" data-en="Account Information">Hesap Bilgileri</h3>
     <ul>
-      <li>Email address</li>
-      <li>Authentication-related information required to create and manage your account</li>
+      <li data-tr="E-posta adresi" data-en="Email address">E-posta adresi</li>
+      <li data-tr="Hesabınızı oluşturmak ve yönetmek için gerekli kimlik doğrulama bilgileri" data-en="Authentication-related information required to create and manage your account">Hesabınızı oluşturmak ve yönetmek için gerekli kimlik doğrulama bilgileri</li>
     </ul>
 
-    <h3>User Content</h3>
+    <h3 data-tr="Kullanıcı İçeriği" data-en="User Content">Kullanıcı İçeriği</h3>
     <ul>
-      <li>Savings records</li>
-      <li>Income and expense records</li>
-      <li>Financial goals</li>
-      <li>Notes and information voluntarily entered by users</li>
-      <li>Profile images selected by users</li>
-      <li>Other data created and managed within the App</li>
+      <li data-tr="Birikim kayıtları" data-en="Savings records">Birikim kayıtları</li>
+      <li data-tr="Gelir ve gider kayıtları" data-en="Income and expense records">Gelir ve gider kayıtları</li>
+      <li data-tr="Finansal hedefler" data-en="Financial goals">Finansal hedefler</li>
+      <li data-tr="Kullanıcı tarafından girilen notlar ve bilgiler" data-en="Notes and information voluntarily entered by users">Kullanıcı tarafından girilen notlar ve bilgiler</li>
+      <li data-tr="Kullanıcı tarafından seçilen profil görselleri" data-en="Profile images selected by users">Kullanıcı tarafından seçilen profil görselleri</li>
+      <li data-tr="Uygulama içinde oluşturulan ve yönetilen diğer veriler" data-en="Other data created and managed within the App">Uygulama içinde oluşturulan ve yönetilen diğer veriler</li>
     </ul>
 
-    <h3>Technical Information</h3>
+    <h3 data-tr="Teknik Bilgiler" data-en="Technical Information">Teknik Bilgiler</h3>
     <ul>
-      <li>Device type</li>
-      <li>Operating system version</li>
-      <li>Application version</li>
-      <li>Device identifiers</li>
-      <li>Advertising-related identifiers, where applicable</li>
-      <li>Log data and diagnostic information</li>
+      <li data-tr="Cihaz türü" data-en="Device type">Cihaz türü</li>
+      <li data-tr="İşletim sistemi sürümü" data-en="Operating system version">İşletim sistemi sürümü</li>
+      <li data-tr="Uygulama sürümü" data-en="Application version">Uygulama sürümü</li>
+      <li data-tr="Cihaz tanımlayıcıları" data-en="Device identifiers">Cihaz tanımlayıcıları</li>
+      <li data-tr="Geçerli olduğu durumlarda reklamla ilgili tanımlayıcılar" data-en="Advertising-related identifiers, where applicable">Geçerli olduğu durumlarda reklamla ilgili tanımlayıcılar</li>
+      <li data-tr="Günlük kayıtları ve tanı bilgileri" data-en="Log data and diagnostic information">Günlük kayıtları ve tanı bilgileri</li>
     </ul>
 
-    <h3>Analytics, Performance, and Diagnostic Data</h3>
+    <h3 data-tr="Analitik, Performans ve Tanı Verileri" data-en="Analytics, Performance, and Diagnostic Data">Analitik, Performans ve Tanı Verileri</h3>
     <ul>
-      <li>Error reports</li>
-      <li>Crash logs</li>
-      <li>Performance metrics used to improve the App</li>
-      <li>App interaction information</li>
+      <li data-tr="Hata raporları" data-en="Error reports">Hata raporları</li>
+      <li data-tr="Çökme günlükleri" data-en="Crash logs">Çökme günlükleri</li>
+      <li data-tr="Uygulamayı iyileştirmek için kullanılan performans ölçümleri" data-en="Performance metrics used to improve the App">Uygulamayı iyileştirmek için kullanılan performans ölçümleri</li>
+      <li data-tr="Uygulama etkileşim bilgileri" data-en="App interaction information">Uygulama etkileşim bilgileri</li>
     </ul>
 
-    <h3>Purchase and Subscription Information</h3>
+    <h3 data-tr="Satın Alma ve Abonelik Bilgileri" data-en="Purchase and Subscription Information">Satın Alma ve Abonelik Bilgileri</h3>
     <ul>
-      <li>Subscription status</li>
-      <li>Purchase validation information</li>
-      <li>Receipt and entitlement information required to provide ad-free access</li>
+      <li data-tr="Abonelik durumu" data-en="Subscription status">Abonelik durumu</li>
+      <li data-tr="Satın alma doğrulama bilgileri" data-en="Purchase validation information">Satın alma doğrulama bilgileri</li>
+      <li data-tr="Reklamsız erişim sağlamak için gerekli makbuz ve yetkilendirme bilgileri" data-en="Receipt and entitlement information required to provide ad-free access">Reklamsız erişim sağlamak için gerekli makbuz ve yetkilendirme bilgileri</li>
     </ul>
 
-    <h2>2. How We Use Your Information</h2>
+    <h2 data-tr="2. Bilgilerinizi Nasıl Kullanırız" data-en="2. How We Use Your Information">2. Bilgilerinizi Nasıl Kullanırız</h2>
     <ul>
-      <li>Provide and maintain the App's functionality</li>
-      <li>Create and manage user accounts</li>
-      <li>Synchronize data across devices</li>
-      <li>Process and validate subscriptions</li>
-      <li>Enable ad-free features for active subscribers</li>
-      <li>Display and measure advertisements</li>
-      <li>Improve performance and user experience</li>
-      <li>Detect, prevent, and resolve technical issues</li>
-      <li>Ensure security and prevent unauthorized access</li>
-      <li>Prevent fraud and abuse</li>
-      <li>Comply with legal obligations</li>
+      <li data-tr="Uygulama işlevlerini sağlamak ve sürdürmek" data-en="Provide and maintain the App's functionality">Uygulama işlevlerini sağlamak ve sürdürmek</li>
+      <li data-tr="Kullanıcı hesaplarını oluşturmak ve yönetmek" data-en="Create and manage user accounts">Kullanıcı hesaplarını oluşturmak ve yönetmek</li>
+      <li data-tr="Verileri cihazlar arasında senkronize etmek" data-en="Synchronize data across devices">Verileri cihazlar arasında senkronize etmek</li>
+      <li data-tr="Abonelikleri işlemek ve doğrulamak" data-en="Process and validate subscriptions">Abonelikleri işlemek ve doğrulamak</li>
+      <li data-tr="Aktif aboneler için reklamsız özellikleri etkinleştirmek" data-en="Enable ad-free features for active subscribers">Aktif aboneler için reklamsız özellikleri etkinleştirmek</li>
+      <li data-tr="Reklamları göstermek ve ölçmek" data-en="Display and measure advertisements">Reklamları göstermek ve ölçmek</li>
+      <li data-tr="Performansı ve kullanıcı deneyimini iyileştirmek" data-en="Improve performance and user experience">Performansı ve kullanıcı deneyimini iyileştirmek</li>
+      <li data-tr="Teknik sorunları tespit etmek, önlemek ve çözmek" data-en="Detect, prevent, and resolve technical issues">Teknik sorunları tespit etmek, önlemek ve çözmek</li>
+      <li data-tr="Güvenliği sağlamak ve yetkisiz erişimi önlemek" data-en="Ensure security and prevent unauthorized access">Güvenliği sağlamak ve yetkisiz erişimi önlemek</li>
+      <li data-tr="Dolandırıcılığı ve kötüye kullanımı önlemek" data-en="Prevent fraud and abuse">Dolandırıcılığı ve kötüye kullanımı önlemek</li>
+      <li data-tr="Yasal yükümlülüklere uymak" data-en="Comply with legal obligations">Yasal yükümlülüklere uymak</li>
     </ul>
 
-    <h2>3. Advertising</h2>
-    <p>Elde Var may display advertisements provided by Google AdMob. Google and its partners may collect and process technical information such as device identifiers, advertising data, diagnostic information, and app interaction information to deliver, measure, and improve advertisements.</p>
-    <p>If you purchase and maintain an active ad-free subscription, advertisements will not be shown while your subscription remains active.</p>
-    <p>For more information about Google's data practices, please review Google's Privacy Policy:</p>
+    <h2 data-tr="3. Reklamlar" data-en="3. Advertising">3. Reklamlar</h2>
+    <p data-tr="Elde Var, Google AdMob tarafından sağlanan reklamları gösterebilir. Google ve iş ortakları; reklamları sunmak, ölçmek ve iyileştirmek için cihaz tanımlayıcıları, reklam verileri, tanı bilgileri ve uygulama etkileşim bilgileri gibi teknik bilgileri toplayabilir ve işleyebilir." data-en="Elde Var may display advertisements provided by Google AdMob. Google and its partners may collect and process technical information such as device identifiers, advertising data, diagnostic information, and app interaction information to deliver, measure, and improve advertisements.">
+      Elde Var, Google AdMob tarafından sağlanan reklamları gösterebilir. Google ve iş ortakları; reklamları sunmak, ölçmek ve iyileştirmek için cihaz tanımlayıcıları, reklam verileri, tanı bilgileri ve uygulama etkileşim bilgileri gibi teknik bilgileri toplayabilir ve işleyebilir.
+    </p>
+    <p data-tr="Aktif bir reklamsız abonelik satın alır ve sürdürürseniz, aboneliğiniz aktif olduğu sürece reklamlar gösterilmez." data-en="If you purchase and maintain an active ad-free subscription, advertisements will not be shown while your subscription remains active.">
+      Aktif bir reklamsız abonelik satın alır ve sürdürürseniz, aboneliğiniz aktif olduğu sürece reklamlar gösterilmez.
+    </p>
+    <p data-tr="Google'ın veri uygulamaları hakkında daha fazla bilgi için Google Gizlilik Politikası'nı inceleyebilirsiniz:" data-en="For more information about Google's data practices, please review Google's Privacy Policy:">
+      Google'ın veri uygulamaları hakkında daha fazla bilgi için Google Gizlilik Politikası'nı inceleyebilirsiniz:
+    </p>
     <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></p>
 
-    <h2>4. Subscriptions and Payments</h2>
-    <p>Elde Var offers optional auto-renewable subscriptions through Apple's App Store. Subscription purchases, renewals, cancellations, billing, and payment processing are handled by Apple.</p>
-    <p>We use RevenueCat to manage subscription status, validate purchases, restore purchases, and provide ad-free access to users with an active subscription. RevenueCat may process purchase-related information, receipt validation data, subscription status, entitlement information, and anonymous identifiers required for subscription management.</p>
-    <p>For more information about RevenueCat's data practices, please review RevenueCat's Privacy Policy:</p>
+    <h2 data-tr="4. Abonelikler ve Ödemeler" data-en="4. Subscriptions and Payments">4. Abonelikler ve Ödemeler</h2>
+    <p data-tr="Elde Var, Apple App Store üzerinden isteğe bağlı otomatik yenilenen abonelikler sunar. Abonelik satın alma, yenileme, iptal, faturalandırma ve ödeme işlemleri Apple tarafından yürütülür." data-en="Elde Var offers optional auto-renewable subscriptions through Apple's App Store. Subscription purchases, renewals, cancellations, billing, and payment processing are handled by Apple.">
+      Elde Var, Apple App Store üzerinden isteğe bağlı otomatik yenilenen abonelikler sunar. Abonelik satın alma, yenileme, iptal, faturalandırma ve ödeme işlemleri Apple tarafından yürütülür.
+    </p>
+    <p data-tr="Abonelik durumunu yönetmek, satın almaları doğrulamak, satın almaları geri yüklemek ve aktif aboneliği olan kullanıcılara reklamsız erişim sağlamak için RevenueCat kullanırız." data-en="We use RevenueCat to manage subscription status, validate purchases, restore purchases, and provide ad-free access to users with an active subscription.">
+      Abonelik durumunu yönetmek, satın almaları doğrulamak, satın almaları geri yüklemek ve aktif aboneliği olan kullanıcılara reklamsız erişim sağlamak için RevenueCat kullanırız.
+    </p>
+    <p data-tr="RevenueCat'in veri uygulamaları hakkında daha fazla bilgi için RevenueCat Gizlilik Politikası'nı inceleyebilirsiniz:" data-en="For more information about RevenueCat's data practices, please review RevenueCat's Privacy Policy:">
+      RevenueCat'in veri uygulamaları hakkında daha fazla bilgi için RevenueCat Gizlilik Politikası'nı inceleyebilirsiniz:
+    </p>
     <p><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">https://www.revenuecat.com/privacy</a></p>
 
-    <h2>5. Data Storage and Retention</h2>
-    <p>Your information is stored securely using trusted third-party infrastructure providers. We retain personal information only for as long as necessary to provide our services, fulfill legal obligations, resolve disputes, and enforce agreements.</p>
+    <h2 data-tr="5. Veri Saklama" data-en="5. Data Storage and Retention">5. Veri Saklama</h2>
+    <p data-tr="Bilgileriniz güvenilir üçüncü taraf altyapı sağlayıcıları kullanılarak güvenli şekilde saklanır. Kişisel bilgileri yalnızca hizmetleri sağlamak, yasal yükümlülükleri yerine getirmek, uyuşmazlıkları çözmek ve anlaşmaları uygulamak için gerekli olduğu sürece saklarız." data-en="Your information is stored securely using trusted third-party infrastructure providers. We retain personal information only for as long as necessary to provide our services, fulfill legal obligations, resolve disputes, and enforce agreements.">
+      Bilgileriniz güvenilir üçüncü taraf altyapı sağlayıcıları kullanılarak güvenli şekilde saklanır. Kişisel bilgileri yalnızca hizmetleri sağlamak, yasal yükümlülükleri yerine getirmek, uyuşmazlıkları çözmek ve anlaşmaları uygulamak için gerekli olduğu sürece saklarız.
+    </p>
 
-    <h2>6. Third-Party Services</h2>
-    <p>Elde Var may use third-party services, including but not limited to:</p>
+    <h2 data-tr="6. Üçüncü Taraf Servisler" data-en="6. Third-Party Services">6. Üçüncü Taraf Servisler</h2>
     <ul>
-      <li>Supabase for authentication, database, and backend services</li>
-      <li>Google AdMob for advertising services</li>
-      <li>RevenueCat for subscription and purchase management</li>
-      <li>Apple App Store for in-app purchases, subscriptions, billing, and payment processing</li>
-      <li>Analytics, crash reporting, and performance monitoring services</li>
+      <li data-tr="Supabase: kimlik doğrulama, veritabanı ve backend hizmetleri" data-en="Supabase for authentication, database, and backend services">Supabase: kimlik doğrulama, veritabanı ve backend hizmetleri</li>
+      <li data-tr="Google AdMob: reklam hizmetleri" data-en="Google AdMob for advertising services">Google AdMob: reklam hizmetleri</li>
+      <li data-tr="RevenueCat: abonelik ve satın alma yönetimi" data-en="RevenueCat for subscription and purchase management">RevenueCat: abonelik ve satın alma yönetimi</li>
+      <li data-tr="Apple App Store: uygulama içi satın almalar, abonelikler, faturalandırma ve ödeme işlemleri" data-en="Apple App Store for in-app purchases, subscriptions, billing, and payment processing">Apple App Store: uygulama içi satın almalar, abonelikler, faturalandırma ve ödeme işlemleri</li>
+      <li data-tr="Analitik, çökme raporlama ve performans izleme servisleri" data-en="Analytics, crash reporting, and performance monitoring services">Analitik, çökme raporlama ve performans izleme servisleri</li>
     </ul>
 
-    <h2>7. Data Sharing</h2>
-    <p>We do not sell your personal information. We may share information with trusted third-party service providers only when necessary to operate the App, provide subscriptions, display advertisements, improve reliability, prevent fraud, or comply with legal obligations.</p>
+    <h2 data-tr="7. Veri Paylaşımı" data-en="7. Data Sharing">7. Veri Paylaşımı</h2>
+    <p data-tr="Kişisel bilgilerinizi satmayız. Bilgiler, yalnızca uygulamayı işletmek, abonelikleri sağlamak, reklam göstermek, güvenilirliği artırmak, dolandırıcılığı önlemek veya yasal yükümlülüklere uymak için gerekli olduğunda güvenilir üçüncü taraf hizmet sağlayıcılarla paylaşılabilir." data-en="We do not sell your personal information. We may share information with trusted third-party service providers only when necessary to operate the App, provide subscriptions, display advertisements, improve reliability, prevent fraud, or comply with legal obligations.">
+      Kişisel bilgilerinizi satmayız. Bilgiler, yalnızca uygulamayı işletmek, abonelikleri sağlamak, reklam göstermek, güvenilirliği artırmak, dolandırıcılığı önlemek veya yasal yükümlülüklere uymak için gerekli olduğunda güvenilir üçüncü taraf hizmet sağlayıcılarla paylaşılabilir.
+    </p>
 
-    <h2>8. Data Security</h2>
-    <p>We implement reasonable technical and organizational measures to protect your information from unauthorized access, loss, misuse, alteration, or disclosure. However, no method of electronic transmission or storage is completely secure.</p>
+    <h2 data-tr="8. Veri Güvenliği" data-en="8. Data Security">8. Veri Güvenliği</h2>
+    <p data-tr="Bilgilerinizi yetkisiz erişim, kayıp, kötüye kullanım, değiştirme veya ifşaya karşı korumak için makul teknik ve organizasyonel önlemler uygularız. Ancak hiçbir elektronik iletim veya saklama yöntemi tamamen güvenli değildir." data-en="We implement reasonable technical and organizational measures to protect your information from unauthorized access, loss, misuse, alteration, or disclosure. However, no method of electronic transmission or storage is completely secure.">
+      Bilgilerinizi yetkisiz erişim, kayıp, kötüye kullanım, değiştirme veya ifşaya karşı korumak için makul teknik ve organizasyonel önlemler uygularız. Ancak hiçbir elektronik iletim veya saklama yöntemi tamamen güvenli değildir.
+    </p>
 
-    <h2>9. Children's Privacy</h2>
-    <p>Elde Var is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
+    <h2 data-tr="9. Çocukların Gizliliği" data-en="9. Children's Privacy">9. Çocukların Gizliliği</h2>
+    <p data-tr="Elde Var, 13 yaşın altındaki çocuklara yönelik değildir. Çocuklardan bilerek kişisel bilgi toplamayız." data-en="Elde Var is not intended for children under the age of 13. We do not knowingly collect personal information from children.">
+      Elde Var, 13 yaşın altındaki çocuklara yönelik değildir. Çocuklardan bilerek kişisel bilgi toplamayız.
+    </p>
 
-    <h2>10. Your Rights</h2>
-    <p>Depending on your location and applicable laws, you may have the right to access, correct, delete, restrict, export, or request a copy of your personal data. You may contact us using the contact information below to submit a request.</p>
+    <h2 data-tr="10. Haklarınız" data-en="10. Your Rights">10. Haklarınız</h2>
+    <p data-tr="Bulunduğunuz yere ve geçerli yasalara bağlı olarak kişisel verilerinize erişme, düzeltme, silme, kısıtlama, dışa aktarma veya bir kopyasını talep etme hakkınız olabilir." data-en="Depending on your location and applicable laws, you may have the right to access, correct, delete, restrict, export, or request a copy of your personal data.">
+      Bulunduğunuz yere ve geçerli yasalara bağlı olarak kişisel verilerinize erişme, düzeltme, silme, kısıtlama, dışa aktarma veya bir kopyasını talep etme hakkınız olabilir.
+    </p>
 
-    <h2>11. Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page and become effective upon publication. The "Last Updated" date will be revised when this Privacy Policy is updated.</p>
+    <h2 data-tr="11. Değişiklikler" data-en="11. Changes to This Privacy Policy">11. Değişiklikler</h2>
+    <p data-tr="Bu Gizlilik Politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında yürürlüğe girer." data-en="We may update this Privacy Policy from time to time. Any changes will be posted on this page and become effective upon publication.">
+      Bu Gizlilik Politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında yürürlüğe girer.
+    </p>
 
     <section class="contact">
-      <h2>12. Contact Us</h2>
-      <p>For questions regarding this Privacy Policy or our data practices, contact us at:</p>
+      <h2 data-tr="12. İletişim" data-en="12. Contact Us">12. İletişim</h2>
+      <p data-tr="Bu Gizlilik Politikası veya veri uygulamalarımız hakkında sorularınız için bizimle iletişime geçebilirsiniz:" data-en="For questions regarding this Privacy Policy or our data practices, contact us at:">Bu Gizlilik Politikası veya veri uygulamalarımız hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
       <p><a href="mailto:support@schstudio.dev">support@schstudio.dev</a></p>
       <p><a href="https://eldevar.schstudio.dev" target="_blank" rel="noopener noreferrer">https://eldevar.schstudio.dev</a></p>
     </section>
 
-    <p class="footer">By using Elde Var, you acknowledge that you have read and understood this Privacy Policy.</p>
+    <p class="footer" data-tr="Elde Var'ı kullanarak bu Gizlilik Politikası'nı okuduğunuzu ve anladığınızı kabul etmiş olursunuz." data-en="By using Elde Var, you acknowledge that you have read and understood this Privacy Policy.">
+      Elde Var'ı kullanarak bu Gizlilik Politikası'nı okuduğunuzu ve anladığınızı kabul etmiş olursunuz.
+    </p>
   </main>
+
+  <script>
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+
+      document.querySelectorAll("[data-tr][data-en]").forEach((element) => {
+        element.textContent = element.dataset[language];
+      });
+
+      document.getElementById("trButton").classList.toggle("active", language === "tr");
+      document.getElementById("enButton").classList.toggle("active", language === "en");
+
+      localStorage.setItem("language", language);
+    }
+
+    setLanguage(localStorage.getItem("language") || "tr");
+  </script>
 </body>
 </html>
