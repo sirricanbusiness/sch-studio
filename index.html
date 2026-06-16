@@ -43,6 +43,8 @@
       cursor: pointer;
       font-size: 14px;
       transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
     }
 
     .language-switch button.active,
@@ -50,6 +52,20 @@
       color: white;
       border-color: rgba(59, 130, 246, 0.7);
       background: rgba(37, 99, 235, 0.28);
+    }
+
+    .lang-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 20px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.28);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
     }
 
     h1 {
@@ -79,8 +95,8 @@
     .hero-card::before {
       content: "";
       position: absolute;
-      width: 540px;
-      height: 540px;
+      width: 710px;
+      height: 710px;
       border-radius: 50%;
       border: 1px solid rgba(59, 130, 246, 0.22);
       top: 52px;
@@ -140,6 +156,7 @@
       0%, 100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-14px);
       }
@@ -164,47 +181,25 @@
       line-height: 1.5;
     }
 
-    .app-store-button {
+    .app-store-link {
       position: relative;
       z-index: 1;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      background: #000;
-      color: #fff;
-      border: 1px solid rgba(59, 130, 246, 0.95);
-      border-radius: 16px;
-      padding: 12px 22px;
-      text-decoration: none;
-      box-shadow: 0 0 28px rgba(37, 99, 235, 0.45);
+      justify-content: center;
+      min-height: 64px;
       transition: 0.2s;
     }
 
-    .app-store-button:hover {
+    .app-store-link:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 36px rgba(37, 99, 235, 0.65);
+      filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.65));
     }
 
-    .apple {
-      font-size: 39px;
-      line-height: 1;
-    }
-
-    .store-text {
-      text-align: left;
-      line-height: 1.05;
-    }
-
-    .store-small {
+    .app-store-badge {
+      height: 56px;
+      width: auto;
       display: block;
-      font-size: 14px;
-      letter-spacing: 0.3px;
-    }
-
-    .store-big {
-      display: block;
-      font-size: 31px;
-      font-weight: 700;
     }
 
     .cards {
@@ -266,10 +261,6 @@
       font-size: 15px;
     }
 
-    .hidden {
-      display: none;
-    }
-
     @media (max-width: 720px) {
       .container {
         padding-top: 34px;
@@ -307,12 +298,12 @@
         font-size: 17px;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
+      .app-store-badge {
+        height: 48px;
       }
 
-      .store-big {
-        font-size: 25px;
+      .cards {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -321,13 +312,22 @@
 <body>
   <main class="container">
     <div class="language-switch">
-      <button type="button" id="trButton" class="active" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-      <button type="button" id="enButton" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button type="button" id="trButton" class="active" onclick="setLanguage('tr')">
+        <span class="lang-badge">TR</span> Türkçe
+      </button>
+
+      <button type="button" id="enButton" onclick="setLanguage('en')">
+        <span class="lang-badge">EN</span> English
+      </button>
     </div>
 
     <h1>SCH Studio</h1>
 
-    <p class="tagline" data-tr="Basit, pratik ve kullanıcı odaklı uygulamalar geliştiriyoruz." data-en="Building simple, practical and user-focused applications.">
+    <p
+      class="tagline"
+      data-tr="Basit, pratik ve kullanıcı odaklı uygulamalar geliştiriyoruz."
+      data-en="Building simple, practical and user-focused applications."
+    >
       Basit, pratik ve kullanıcı odaklı uygulamalar geliştiriyoruz.
     </p>
 
@@ -338,22 +338,27 @@
 
       <h2 class="app-title">Elde Var</h2>
 
-      <p class="app-text" data-tr="Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin." data-en="Track your income, expenses, savings and financial goals with ease.">
+      <p
+        class="app-text"
+        data-tr="Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin."
+        data-en="Track your income, expenses, savings and financial goals with ease."
+      >
         Gelirlerinizi, giderlerinizi, birikimlerinizi ve finansal hedeflerinizi kolayca takip edin.
       </p>
 
       <a
-        class="app-store-button"
+        class="app-store-link"
         href="https://apps.apple.com/tr/app/elde-var/id6778145520"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Download Elde Var on the App Store"
+        aria-label="App Store'dan İndir"
       >
-        <span class="apple"></span>
-        <span class="store-text">
-          <span class="store-small" data-tr="App Store'dan" data-en="Download on the">App Store'dan</span>
-          <span class="store-big" data-tr="İndir" data-en="App Store">İndir</span>
-        </span>
+        <img
+          id="appStoreBadge"
+          class="app-store-badge"
+          src="app-store-badge-tr.svg"
+          alt="App Store'dan İndir"
+        />
       </a>
     </section>
 
@@ -365,8 +370,15 @@
             <path d="M9.5 12L11.2 13.7L15 9.8" stroke="#93c5fd" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h2 data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</h2>
-        <p data-tr="Kullanıcı verilerinin nasıl toplandığını, saklandığını ve korunduğunu okuyun." data-en="Read how user data is collected, stored and protected.">
+
+        <h2 data-tr="Gizlilik Politikası" data-en="Privacy Policy">
+          Gizlilik Politikası
+        </h2>
+
+        <p
+          data-tr="Kullanıcı verilerinin nasıl toplandığını, saklandığını ve korunduğunu okuyun."
+          data-en="Read how user data is collected, stored and protected."
+        >
           Kullanıcı verilerinin nasıl toplandığını, saklandığını ve korunduğunu okuyun.
         </p>
       </a>
@@ -380,8 +392,15 @@
             <path d="M16 19C16 20.1 14.2 21 12 21" stroke="#34d399" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </div>
-        <h2 data-tr="Destek" data-en="Support">Destek</h2>
-        <p data-tr="Yardım, hata bildirimleri ve geri bildirimler için bizimle iletişime geçin." data-en="Contact us for assistance, bug reports and feedback.">
+
+        <h2 data-tr="Destek" data-en="Support">
+          Destek
+        </h2>
+
+        <p
+          data-tr="Yardım, hata bildirimleri ve geri bildirimler için bizimle iletişime geçin."
+          data-en="Contact us for assistance, bug reports and feedback."
+        >
           Yardım, hata bildirimleri ve geri bildirimler için bizimle iletişime geçin.
         </p>
       </a>
@@ -399,6 +418,19 @@
       document.querySelectorAll("[data-tr][data-en]").forEach((element) => {
         element.textContent = element.dataset[language];
       });
+
+      const badge = document.getElementById("appStoreBadge");
+      const appStoreLink = document.querySelector(".app-store-link");
+
+      if (language === "tr") {
+        badge.src = "app-store-badge-tr.svg";
+        badge.alt = "App Store'dan İndir";
+        appStoreLink.setAttribute("aria-label", "App Store'dan İndir");
+      } else {
+        badge.src = "app-store-badge-en.svg";
+        badge.alt = "Download on the App Store";
+        appStoreLink.setAttribute("aria-label", "Download on the App Store");
+      }
 
       document.getElementById("trButton").classList.toggle("active", language === "tr");
       document.getElementById("enButton").classList.toggle("active", language === "en");
