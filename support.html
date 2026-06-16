@@ -229,10 +229,15 @@
       box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
     }
 
-    .support-form button:hover {
+    .support-form button:hover:not(:disabled) {
       transform: translateY(-2px);
       background: linear-gradient(135deg, #3b82f6, #2563eb);
       box-shadow: 0 18px 40px rgba(37, 99, 235, 0.38);
+    }
+
+    .support-form button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
 
     .email-box {
@@ -296,6 +301,13 @@
       z-index: 9999;
       text-align: center;
       backdrop-filter: blur(12px);
+    }
+
+    .toast.error {
+      border-color: rgba(239, 68, 68, 0.6);
+      box-shadow:
+        0 0 50px rgba(239, 68, 68, 0.14),
+        0 25px 80px rgba(0, 0, 0, 0.5);
     }
 
     .toast.show {
@@ -375,14 +387,13 @@
 
     <form
       id="supportForm"
-      action="https://formsubmit.co/support@schstudio.dev"
+      action="https://formsubmit.co/ajax/support@schstudio.dev"
       method="POST"
       class="support-form"
     >
       <input type="hidden" name="_subject" value="Elde Var Support Request" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://eldevar.schstudio.dev/support.html?sent=1" />
 
       <label for="name" data-tr="Ad Soyad" data-en="Name">Ad Soyad</label>
       <input
@@ -481,10 +492,10 @@
   <div
     id="toast"
     class="toast"
-    data-tr="Mesajınız gönderildi. En kısa sürede dönüş yapacağız."
-    data-en="Your message has been sent. We will get back to you as soon as possible."
+    data-tr="Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağız."
+    data-en="Your message has been sent successfully. We will get back to you soon."
   >
-    Mesajınız gönderildi. En kısa sürede dönüş yapacağız.
+    Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağız.
   </div>
 
   <script>
@@ -505,9 +516,15 @@
       localStorage.setItem("language", language);
     }
 
-    function showToast() {
+    function showToast(isError) {
       const toast = document.getElementById("toast");
       const backdrop = document.getElementById("toastBackdrop");
+
+      if (isError) {
+        toast.classList.add("error");
+      } else {
+        toast.classList.remove("error");
+      }
 
       backdrop.classList.add("show");
       toast.classList.add("show");
@@ -515,18 +532,70 @@
       setTimeout(() => {
         toast.classList.remove("show");
         backdrop.classList.remove("show");
+        toast.classList.remove("error");
       }, 4500);
     }
 
     const preferredLanguage = localStorage.getItem("language") || "tr";
     setLanguage(preferredLanguage);
 
-    const params = new URLSearchParams(window.location.search);
+    const supportForm = document.getElementById("supportForm");
 
-    if (params.get("sent") === "1") {
-      showToast();
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    supportForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!supportForm.checkValidity()) {
+        supportForm.reportValidity();
+        return;
+      }
+
+      const button = supportForm.querySelector("button[type='submit']");
+      const originalText = button.textContent;
+
+      button.disabled = true;
+      button.textContent = document.documentElement.lang === "tr" ? "Gönderiliyor..." : "Sending...";
+
+      try {
+        const formData = new FormData(supportForm);
+
+        const response = await fetch(supportForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Form submission failed");
+        }
+
+        supportForm.reset();
+
+        const toast = document.getElementById("toast");
+
+        if (document.documentElement.lang === "tr") {
+          toast.textContent = "Mesajınız başarıyla gönderildi. En kısa sürede dönüş yapacağız.";
+        } else {
+          toast.textContent = "Your message has been sent successfully. We will get back to you soon.";
+        }
+
+        showToast(false);
+      } catch (error) {
+        const toast = document.getElementById("toast");
+
+        if (document.documentElement.lang === "tr") {
+          toast.textContent = "Mesaj gönderilemedi. Lütfen tekrar deneyin veya doğrudan support@schstudio.dev adresine yazın.";
+        } else {
+          toast.textContent = "Failed to send message. Please try again or email us directly at support@schstudio.dev.";
+        }
+
+        showToast(true);
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
   </script>
 </body>
 </html>
