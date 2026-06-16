@@ -5,30 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elde Var Support</title>
 
+  <meta name="theme-color" content="#020617">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      background: #020617;
+    }
+
     html {
       margin: 0;
       min-height: 100%;
-      background:
-        radial-gradient(circle at top, rgba(37, 99, 235, 0.24), transparent 34%),
-        linear-gradient(135deg, #020617, #0f172a 55%, #111827);
+      background: #020617;
       overscroll-behavior: none;
     }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(37, 99, 235, 0.24), transparent 34%),
-        linear-gradient(135deg, #020617, #0f172a 55%, #111827);
-      background-attachment: fixed;
       color: #e2e8f0;
       line-height: 1.7;
       min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.24), transparent 34%),
+        linear-gradient(135deg, #020617, #0f172a 55%, #111827);
+      background-color: #020617;
     }
 
     .container {
@@ -169,6 +182,17 @@
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
     }
 
+    .support-form input:invalid:not(:placeholder-shown),
+    .support-form textarea:invalid:not(:placeholder-shown) {
+      border-color: rgba(239, 68, 68, 0.9);
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.16);
+    }
+
+    .support-form input:valid:not(:placeholder-shown),
+    .support-form textarea:valid:not(:placeholder-shown) {
+      border-color: rgba(34, 197, 94, 0.7);
+    }
+
     .support-form textarea {
       resize: vertical;
       min-height: 140px;
@@ -177,6 +201,19 @@
     .support-form input::placeholder,
     .support-form textarea::placeholder {
       color: #64748b;
+    }
+
+    .field-error {
+      display: none;
+      color: #fca5a5;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 4px;
+    }
+
+    .support-form input:invalid:not(:placeholder-shown) + .field-error,
+    .support-form textarea:invalid:not(:placeholder-shown) + .field-error {
+      display: block;
     }
 
     .support-form button {
@@ -228,35 +265,53 @@
       text-align: center;
     }
 
+    .toast-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 9998;
+      display: none;
+    }
+
+    .toast-backdrop.show {
+      display: block;
+    }
+
     .toast {
       position: fixed;
-      right: 24px;
-      bottom: 24px;
-      max-width: 360px;
-      padding: 16px 18px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(34, 197, 94, 0.45);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(420px, calc(100vw - 40px));
+      padding: 22px 24px;
+      background: rgba(15, 23, 42, 0.97);
+      border: 1px solid rgba(34, 197, 94, 0.5);
       color: white;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      border-radius: 20px;
+      box-shadow:
+        0 0 50px rgba(34, 197, 94, 0.15),
+        0 25px 80px rgba(0, 0, 0, 0.5);
       display: none;
       z-index: 9999;
+      text-align: center;
+      backdrop-filter: blur(12px);
     }
 
     .toast.show {
       display: block;
-      animation: toastIn 0.25s ease-out;
+      animation: toastIn 0.3s ease-out;
     }
 
     @keyframes toastIn {
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translate(-50%, calc(-50% + 15px));
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, -50%);
       }
     }
 
@@ -286,12 +341,6 @@
       .logo-wrap::before {
         width: 112px;
         height: 112px;
-      }
-
-      .toast {
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
       }
     }
   </style>
@@ -343,8 +392,16 @@
         placeholder="Adınız"
         data-placeholder-tr="Adınız"
         data-placeholder-en="Your name"
+        minlength="2"
         required
       />
+      <span
+        class="field-error"
+        data-tr="Lütfen en az 2 karakterden oluşan bir ad girin."
+        data-en="Please enter a name with at least 2 characters."
+      >
+        Lütfen en az 2 karakterden oluşan bir ad girin.
+      </span>
 
       <label for="email" data-tr="E-posta" data-en="Email">E-posta</label>
       <input
@@ -356,6 +413,13 @@
         data-placeholder-en="your@email.com"
         required
       />
+      <span
+        class="field-error"
+        data-tr="Geçerli bir e-posta adresi girin."
+        data-en="Please enter a valid email address."
+      >
+        Geçerli bir e-posta adresi girin.
+      </span>
 
       <label for="device" data-tr="Cihaz" data-en="Device">Cihaz</label>
       <input
@@ -384,8 +448,16 @@
         placeholder="Sorununuzu ya da geri bildiriminizi yazın..."
         data-placeholder-tr="Sorununuzu ya da geri bildiriminizi yazın..."
         data-placeholder-en="Describe your issue or feedback..."
+        minlength="10"
         required
       ></textarea>
+      <span
+        class="field-error"
+        data-tr="Lütfen en az 10 karakterden oluşan bir mesaj girin."
+        data-en="Please enter a message with at least 10 characters."
+      >
+        Lütfen en az 10 karakterden oluşan bir mesaj girin.
+      </span>
 
       <button type="submit" data-tr="Mesaj Gönder" data-en="Send Message">Mesaj Gönder</button>
     </form>
@@ -403,6 +475,8 @@
       SCH Studio · Elde Var · 48 saat içinde yanıt vermeyi hedefliyoruz.
     </p>
   </main>
+
+  <div id="toastBackdrop" class="toast-backdrop"></div>
 
   <div
     id="toast"
@@ -433,11 +507,15 @@
 
     function showToast() {
       const toast = document.getElementById("toast");
+      const backdrop = document.getElementById("toastBackdrop");
+
+      backdrop.classList.add("show");
       toast.classList.add("show");
 
       setTimeout(() => {
         toast.classList.remove("show");
-      }, 5000);
+        backdrop.classList.remove("show");
+      }, 4500);
     }
 
     const preferredLanguage = localStorage.getItem("language") || "tr";
