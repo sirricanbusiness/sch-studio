@@ -95,23 +95,23 @@
     .hero-card::before {
       content: "";
       position: absolute;
-      width: 710px;
-      height: 710px;
+      width: 760px;
+      height: 420px;
       border-radius: 50%;
-      border: 1px solid rgba(59, 130, 246, 0.22);
-      top: 48%;
+      border: 1px solid rgba(59, 130, 246, 0.24);
+      top: 92px;
       left: 50%;
-      transform: translate(-50%, -50%);
-}
+      transform: translateX(-50%);
+    }
 
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 380px;
-      height: 380px;
+      width: 560px;
+      height: 320px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 66%);
-      top: 88px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 68%);
+      top: 118px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -277,6 +277,18 @@
 
       .hero-card {
         padding: 42px 20px 38px;
+      }
+
+      .hero-card::before {
+        width: 420px;
+        height: 250px;
+        top: 72px;
+      }
+      
+      .hero-card::after {
+        width: 320px;
+        height: 220px;
+        top: 86px;
       }
 
       .app-icon {
